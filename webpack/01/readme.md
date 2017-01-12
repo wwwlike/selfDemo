@@ -1,10 +1,10 @@
-1:cnpm install  
+#1:cnpm install  
 //安装webpack 及 load css的加载器工具
 
-2：webpack 
+#2：webpack 
 //项目发布打包
 
-3：项目在线调试运行
+#3：项目在线调试运行
 # 安装
 $ npm install webpack-dev-server -g
 
