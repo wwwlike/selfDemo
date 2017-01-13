@@ -1,0 +1,37 @@
+<html>
+	<head>
+		<script src="https://cdn.socket.io/socket.io-1.2.1.js"></script>
+		
+		<script>
+			var socket = null;
+        window.onload = function(){
+             socket = io.connect('/home',{_query:'sid=123456'});//第一个参数里面是房间名字  后面是传递参数
+            //connect函数可以接受一个url参数，url可以socket服务的http完整地址，也可以是相对路径，如果省略则表示默认连接当前路径。与服务端类似，客户端也需要注册相应的事件来捕获信息，不同的是客户端连接成功的事件是connect。
+            
+            socket.on('connect',function(){
+              //  document.write('connect success!');
+                socket.send('client helloword!');
+            });
+		socket.on('message',function(data){
+  			 alert(data);
+			});
+
+        };
+        
+        function test (some){
+        	 socket.send(some);
+        }
+    </script>
+	</head>
+	<body>
+	<h1>
+	当客户端成功加载socket.io客户端文件后会获取到一个全局对象io，<br>
+	我们将通过io.connect函数来向服务端发起连接请求。
+	当我们成功建立连接后，我们可以通过socket对象的send函数来互相发送消息，
+	连接成功后，我们向服务端发送消息hello world!，还为socket注册了message事件，它是send函数对应的接收消息的事件，当服务端向客户端send消息时，我们就可以在message事件中接收到发送过来的消息。
+	</h1>
+	<button onClick="test('exit')">exit</button>
+	<button onClick="test('123')">123</button>
+	</body>
+
+</html>
